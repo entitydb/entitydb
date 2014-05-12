@@ -1,0 +1,25 @@
+{
+  "name": "entityjs",
+  "version": "0.0.0",
+  "description": "entity engine for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/entityjs/entity.git"
+  },
+  "keywords": [
+    "entity",
+    "resource",
+    "model",
+    "controller"
+  ],
+  "author": "ahdinosaur",
+  "license": "AGPLv3",
+  "bugs": {
+    "url": "https://github.com/entityjs/entity/issues"
+  },
+  "homepage": "https://github.com/entityjs/entity"
+}
