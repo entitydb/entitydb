@@ -13,15 +13,20 @@ entity engine for leveldb
 
 ## features
 
-- works on the server or in the browser
 - uses [mschema](https://github.com/entitydb/mschema) to schema entity objects and methods
+- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate databases
+- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to represent entity relationships in a graph
 
 ## projected features
 
-- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate databases
-- able to reflect entities over various interfaces a la [resource](https://github.com/bigcompany/resource)
-- compatible with [multilevel](https://github.com/juliangruber/multilevel) to use over the network
-- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to represent entity relationships in a graph
+- works on the server or in the browser, see [levelgraph-jsonld#3](http://github.com/mcollina/levelgraph-jsonld/issues/3)
+- able to reflect entities over various interfaces similar to [resources](https://github.com/bigcompany/resources)
+  - rest api
+  - [multilevel](https://github.com/juliangruber/multilevel)
+  - irc
+  - README docs
+- all entity methods emit events
+- all entity methods have pre / post hooks
 
 ## how to
 
@@ -68,11 +73,15 @@ var Creature = Entity.extend({
 
 var creatureDb = new Creature(db);
 
-creatureDB.put("0", {
-  name: "Mikey",
-});
+var myId;
 
-creatureDB.live("0", function (err, creature) {
+creatureDB.put({
+  "name": "Mikey",
+}, function (err, me) {
+  myId = me["@id"];
+};
+
+creatureDB.live(myId, function (err, creature) {
   console.log
 });
 ```
