@@ -4,7 +4,7 @@ var level;
 var db;
 var Entity, Creature, Unicorn;
 
-describe("entityjs", function () {
+describe("entitydb", function () {
 
   before(function () {
     level = require('level-test')();
@@ -18,14 +18,14 @@ describe("entityjs", function () {
       expect(Entity).to.exist;
     });
 
-    it("should create entities", function () {
-      var entities = new Entity(db)
-      expect(entities).to.exist;
-      expect(entities.get).to.exist;
-      expect(entities.put).to.exist;
-      expect(entities.del).to.exist;
-      expect(entities.methods).to.exist;
-      expect(Object.keys(entities.methods).length).to.equal(3);
+    it("should create entityDB", function () {
+      var entityDB = new Entity(db)
+      expect(entityDB).to.exist;
+      expect(entityDB.get).to.exist;
+      expect(entityDB.put).to.exist;
+      expect(entityDB.del).to.exist;
+      expect(entityDB.methods).to.exist;
+      expect(Object.keys(entityDB.methods).length).to.equal(3);
     });
   });
 
@@ -65,19 +65,19 @@ describe("entityjs", function () {
       expect(Creature).to.exist;
     });
 
-    it("should create creatures", function () {
-      var creatures = new Creature(db)
-      expect(creatures).to.exist;
-      expect(creatures.get).to.exist;
-      expect(creatures.put).to.exist;
-      expect(creatures.del).to.exist;
-      expect(creatures.live).to.exist;
-      expect(creatures.methods).to.exist;
-      expect(creatures.methods.get).to.exist;
-      expect(creatures.methods.put).to.exist;
-      expect(creatures.methods.del).to.exist;
-      expect(creatures.methods.live).to.exist;
-      expect(Object.keys(creatures.methods).length).to.equal(4);
+    it("should create creatureDB", function () {
+      var creatureDB = new Creature(db)
+      expect(creatureDB).to.exist;
+      expect(creatureDB.get).to.exist;
+      expect(creatureDB.put).to.exist;
+      expect(creatureDB.del).to.exist;
+      expect(creatureDB.live).to.exist;
+      expect(creatureDB.methods).to.exist;
+      expect(creatureDB.methods.get).to.exist;
+      expect(creatureDB.methods.put).to.exist;
+      expect(creatureDB.methods.del).to.exist;
+      expect(creatureDB.methods.live).to.exist;
+      expect(Object.keys(creatureDB.methods).length).to.equal(4);
     });
   });
 
@@ -95,16 +95,16 @@ describe("entityjs", function () {
       expect(Unicorn).to.exist;
     });
 
-    it("should create unicorns", function () {
-      var unicorns = new Unicorn(db)
-      expect(unicorns).to.exist;
-      expect(unicorns.get).to.exist;
-      expect(unicorns.put).to.exist;
-      expect(unicorns.del).to.exist;
-      expect(unicorns.live).to.exist;
-      expect(unicorns.methods).to.exist;
-      expect(unicorns.methods.live).to.exist;
-      expect(Object.keys(unicorns.methods).length).to.equal(4);
+    it("should create unicornDB", function () {
+      var unicornDB = new Unicorn(db)
+      expect(unicornDB).to.exist;
+      expect(unicornDB.get).to.exist;
+      expect(unicornDB.put).to.exist;
+      expect(unicornDB.del).to.exist;
+      expect(unicornDB.live).to.exist;
+      expect(unicornDB.methods).to.exist;
+      expect(unicornDB.methods.live).to.exist;
+      expect(Object.keys(unicornDB.methods).length).to.equal(4);
     });
   });
 });

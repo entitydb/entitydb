@@ -1,5 +1,5 @@
 {
-  "name": "entityjs",
+  "name": "entitydb",
   "version": "0.0.0",
   "description": "entity engine for leveldb",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/entityjs/entityjs.git"
+    "url": "git://github.com/entitydb/entitydb.git"
   },
   "keywords": [
     "entity",
@@ -19,12 +19,12 @@
   "author": "ahdinosaur",
   "license": "AGPLv3",
   "bugs": {
-    "url": "https://github.com/entityjs/entityjs/issues"
+    "url": "https://github.com/entitydb/entitydb/issues"
   },
-  "homepage": "https://github.com/entityjs/entityjs",
+  "homepage": "https://github.com/entitydb/entitydb",
   "dependencies": {
-    "mschema": "git://github.com/entityjs/mschema",
-    "mschema-rpc": "git://github.com/entityjs/mschema-rpc",
+    "mschema": "git://github.com/entitydb/mschema",
+    "mschema-rpc": "git://github.com/entitydb/mschema-rpc",
     "simple-extend": "^0.1.0",
     "lodash": "^2.4.1",
     "merge-defaults": "^0.1.0"

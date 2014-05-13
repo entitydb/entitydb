@@ -1,11 +1,11 @@
-# entity
+# entitydb
 
-[![server tests](https://travis-ci.org/entityjs/entityjs.png)](https://travis-ci.org/entityjs/entityjs)
-[![npm version](https://badge.fury.io/js/entityjs.png)](https://npmjs.org/package/entityjs)
-[![dependency status](https://david-dm.org/entityjs/entityjs.png)](https://david-dm.org/entityjs/entityjs)
-[![devDependency status](https://david-dm.org/entityjs/entityjs/dev-status.png)](https://david-dm.org/entityjs/entityjs#info=devDependencies)
+[![server tests](https://travis-ci.org/entitydb/entitydb.png)](https://travis-ci.org/entitydb/entitydb)
+[![npm version](https://badge.fury.io/js/entitydb.png)](https://npmjs.org/package/entitydb)
+[![dependency status](https://david-dm.org/entitydb/entitydb.png)](https://david-dm.org/entitydb/entitydb)
+[![devDependency status](https://david-dm.org/entitydb/entitydb/dev-status.png)](https://david-dm.org/entitydb/entitydb#info=devDependencies)
 
-[![browser tests](https://ci.testling.com/entityjs/entityjs.png)](https://ci.testling.com/entityjs/entityjs)
+[![browser tests](https://ci.testling.com/entitydb/entitydb.png)](https://ci.testling.com/entitydb/entitydb)
 
 entity engine for leveldb
 
@@ -16,7 +16,7 @@ entity engine for leveldb
 ### install
 
 ```
-npm install --save entityjs
+npm install --save entitydb
 ```
 
 ### use
@@ -24,7 +24,7 @@ npm install --save entityjs
 ```
 var level = require('level');
 var db = level('./db');
-var Entity = require('entityjs');
+var Entity = require('entitydb');
 
 var Creature = Entity.extend({
   type: "Creature",
@@ -56,11 +56,11 @@ var Creature = Entity.extend({
 
 var creatureDb = new Creature(db);
 
-creatures.put("0", {
+creatureDB.put("0", {
   name: "Mikey",
 });
 
-creatures.live("0", function (err, creature) {
+creatureDB.live("0", function (err, creature) {
   console.log
 });
 ```
@@ -68,7 +68,7 @@ creatures.live("0", function (err, creature) {
 ### develop
 
 ```
-git clone https://github.com/entityjs/entityjs
+git clone https://github.com/entitydb/entitydb
 npm install
 ```
 

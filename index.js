@@ -1,5 +1,5 @@
 //
-// entityjs - entity engine for javascript
+// entityjs - entity engine for leveldb
 //
 
 var mschema = require('mschema');
