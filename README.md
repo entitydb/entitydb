@@ -14,16 +14,16 @@ entity engine for leveldb
 ## features
 
 - uses [mschema](https://github.com/entitydb/mschema) to schema entity objects and methods
-- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate databases
-- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to represent entity relationships in a graph
+- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate entity databases
+- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to represent entity relationships in a searchable graph
 
 ## projected features
 
 - works on the server or in the browser, see [levelgraph-jsonld#3](http://github.com/mcollina/levelgraph-jsonld/issues/3)
 - able to reflect entities over various interfaces similar to [resources](https://github.com/bigcompany/resources)
-  - rest api
+  - REST api with docs
   - [multilevel](https://github.com/juliangruber/multilevel)
-  - irc
+  - IRC
   - README docs
 - all entity methods emit events
 - all entity methods have pre / post hooks
