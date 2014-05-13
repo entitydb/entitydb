@@ -33,10 +33,12 @@ describe("entitydb", function () {
 
   describe("#Creature", function () {
 
+    var myId;
+
     it("should extend Creature from Entity", function () {
       Creature = Entity.extend({
         type: "Creature",
-        base: "http://creatures.open.app",
+        base: "http://open.app/creatures/",
         properties: {
           name: {
             type: "string",
@@ -90,13 +92,28 @@ describe("entitydb", function () {
       expect(Object.keys(creatureDB.methods).length).to.equal(4);
     });
 
-    it("creatureDB should create a creature", function (done) {
+    it("creatureDB.put should put the creature", function (done) {
 
       creatureDB.put({
-        "@id": "http://dinosaur.is/#i",
         "name": "Michael Williams",
         "life": 10,
       }, function (err, creature) {
+        expect(err).to.not.exist;
+
+        expect(creature).to.exist;
+        expect(creature["@id"]).to.exist;
+        expect(creature.name).to.equal("Michael Williams");
+        expect(creature.life).to.equal(10);
+
+        myId = creature["@id"];
+
+        done();
+      });
+    });
+
+    it("creatureDB.get should get the creature", function (done) {
+
+      creatureDB.get(myId, function (err, creature) {
         expect(err).to.not.exist;
 
         expect(creature).to.exist;
@@ -108,8 +125,20 @@ describe("entitydb", function () {
       });
     });
 
-    it("creatureDB should contain 1 creature", function (done) {
-      done();
+    it("creatureDB.del should delete the creature", function (done) {
+
+      creatureDB.del(myId, function (err) {
+        expect(err).to.not.exist;
+
+        done();
+      });
+    });
+
+    it("creatureDB.get should no longer get the creature", function (done) {
+      creatureDB.get(myId, function (err, creature) {
+        expect(creature).to.not.exist;
+        done();
+      });
     });
   });
 
@@ -118,7 +147,7 @@ describe("entitydb", function () {
     it("should extend Unicorn from Creature", function () {
       Unicorn = Creature.extend({
         type: "Unicorn",
-        base: "http://unicorns.open.app",
+        base: "http://open.app/unicorns/",
         properties: {
           name: "string",
         },
