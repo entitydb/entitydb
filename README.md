@@ -11,6 +11,18 @@ entity engine for leveldb
 
 #### work in progress
 
+## features
+
+- works on the server or in the browser
+- uses [mschema](https://github.com/entitydb/mschema) to schema entity objects and methods
+
+## projected features
+
+- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate databases
+- able to reflect entities over various interfaces a la [resource](https://github.com/bigcompany/resource)
+- compatible with [multilevel](https://github.com/juliangruber/multilevel) to use over the network
+- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to represent entity relationships in a graph
+
 ## how to
 
 ### install
