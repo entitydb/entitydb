@@ -94,3 +94,7 @@ npm test
 
 - to run testling locally, you need to install [`xvfb`](http://packages.debian.org/stable/xvfb)
   - `[sudo] apt-get install xvfb`
+
+## license
+
+AGPLv3
