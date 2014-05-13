@@ -2,7 +2,9 @@ var expect = require('chai').expect;
 
 var level;
 var db;
-var Entity, Creature, Unicorn;
+var Entity, entityDB;
+var Creature, creatureDB;
+var Unicorn, unicornDB;
 
 describe("entitydb", function () {
 
@@ -19,7 +21,7 @@ describe("entitydb", function () {
     });
 
     it("should create entityDB", function () {
-      var entityDB = new Entity(db)
+      entityDB = new Entity(db)
       expect(entityDB).to.exist;
       expect(entityDB.get).to.exist;
       expect(entityDB.put).to.exist;
@@ -34,9 +36,17 @@ describe("entitydb", function () {
     it("should extend Creature from Entity", function () {
       Creature = Entity.extend({
         type: "Creature",
+        base: "http://creatures.open.app",
         properties: {
-          name: "string",
-          life: "number",
+          name: {
+            type: "string",
+            required: true,
+          },
+          life: {
+            type: "number",
+            //default: 10, TODO
+            min: 0,
+          },
         },
         methods: {
           live: {
@@ -66,7 +76,7 @@ describe("entitydb", function () {
     });
 
     it("should create creatureDB", function () {
-      var creatureDB = new Creature(db)
+      creatureDB = new Creature(db)
       expect(creatureDB).to.exist;
       expect(creatureDB.get).to.exist;
       expect(creatureDB.put).to.exist;
@@ -79,6 +89,28 @@ describe("entitydb", function () {
       expect(creatureDB.methods.live).to.exist;
       expect(Object.keys(creatureDB.methods).length).to.equal(4);
     });
+
+    it("creatureDB should create a creature", function (done) {
+
+      creatureDB.put({
+        "@id": "http://dinosaur.is/#i",
+        "name": "Michael Williams",
+        "life": 10,
+      }, function (err, creature) {
+        expect(err).to.not.exist;
+
+        expect(creature).to.exist;
+        expect(creature["@id"]).to.equal("http://dinosaur.is/#i");
+        expect(creature.name).to.equal("Michael Williams");
+        expect(creature.life).to.equal(10);
+
+        done();
+      });
+    });
+
+    it("creatureDB should contain 1 creature", function (done) {
+      done();
+    });
   });
 
   describe("#Unicorn", function () {
@@ -86,6 +118,7 @@ describe("entitydb", function () {
     it("should extend Unicorn from Creature", function () {
       Unicorn = Creature.extend({
         type: "Unicorn",
+        base: "http://unicorns.open.app",
         properties: {
           name: "string",
         },
@@ -96,7 +129,7 @@ describe("entitydb", function () {
     });
 
     it("should create unicornDB", function () {
-      var unicornDB = new Unicorn(db)
+      unicornDB = new Unicorn(db)
       expect(unicornDB).to.exist;
       expect(unicornDB.get).to.exist;
       expect(unicornDB.put).to.exist;
