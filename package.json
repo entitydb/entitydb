@@ -1,14 +1,14 @@
 {
   "name": "entityjs",
   "version": "0.0.0",
-  "description": "entity engine for javascript",
+  "description": "entity engine for leveldb",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/**/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/entityjs/entity.git"
+    "url": "git://github.com/entityjs/entityjs.git"
   },
   "keywords": [
     "entity",
@@ -19,9 +19,9 @@
   "author": "ahdinosaur",
   "license": "AGPLv3",
   "bugs": {
-    "url": "https://github.com/entityjs/entity/issues"
+    "url": "https://github.com/entityjs/entityjs/issues"
   },
-  "homepage": "https://github.com/entityjs/entity",
+  "homepage": "https://github.com/entityjs/entityjs",
   "dependencies": {
     "mschema": "git://github.com/entityjs/mschema",
     "mschema-rpc": "git://github.com/entityjs/mschema-rpc",

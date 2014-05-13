@@ -1,13 +1,13 @@
 # entity
 
-[![server tests](https://travis-ci.org/entityjs/entity.png)](https://travis-ci.org/entityjs/entity)
+[![server tests](https://travis-ci.org/entityjs/entityjs.png)](https://travis-ci.org/entityjs/entityjs)
 [![npm version](https://badge.fury.io/js/entityjs.png)](https://npmjs.org/package/entityjs)
-[![dependency status](https://david-dm.org/entityjs/entity.png)](https://david-dm.org/entityjs/entity)
-[![devDependency status](https://david-dm.org/entityjs/entity/dev-status.png)](https://david-dm.org/entityjs/entity#info=devDependencies)
+[![dependency status](https://david-dm.org/entityjs/entityjs.png)](https://david-dm.org/entityjs/entityjs)
+[![devDependency status](https://david-dm.org/entityjs/entityjs/dev-status.png)](https://david-dm.org/entityjs/entityjs#info=devDependencies)
 
-[![browser tests](https://ci.testling.com/entityjs/entity.png)](https://ci.testling.com/entityjs/entity)
+[![browser tests](https://ci.testling.com/entityjs/entityjs.png)](https://ci.testling.com/entityjs/entityjs)
 
-entity engine using leveldb
+entity engine for leveldb
 
 #### work in progress
 
@@ -54,20 +54,21 @@ var Creature = Entity.extend({
   },
 });
 
-var creatures = new Creature(db);
+var creatureDb = new Creature(db);
 
 creatures.put("0", {
   name: "Mikey",
-  karma: 0,
 });
 
-creatures.live("0");
+creatures.live("0", function (err, creature) {
+  console.log
+});
 ```
 
 ### develop
 
 ```
-git clone https://github.com/entityjs/entity
+git clone https://github.com/entityjs/entityjs
 npm install
 ```
 

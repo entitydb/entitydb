@@ -4,7 +4,7 @@ var level;
 var db;
 var Entity, Creature, Unicorn;
 
-describe("entity", function () {
+describe("entityjs", function () {
 
   before(function () {
     level = require('level-test')();
