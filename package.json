@@ -4,7 +4,7 @@
   "description": "entity engine for javascript",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*"
+    "test": "tape test/*"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/entityjs/entity/issues"
   },
-  "homepage": "https://github.com/entityjs/entity"
+  "homepage": "https://github.com/entityjs/entity",
+  "dependencies": {
+    "mschema": "git://github.com/entityjs/mschema",
+    "simple-extend": "^0.1.0",
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "tape": "^2.12.3",
+    "level-test": "^1.6.2"
+  }
 }
