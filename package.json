@@ -25,7 +25,9 @@
   "dependencies": {
     "mschema": "git://github.com/entityjs/mschema",
     "simple-extend": "^0.1.0",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "mschema-rpc": "git://github.com/entityjs/mschema-rpc",
+    "merge-defaults": "^0.1.0"
   },
   "devDependencies": {
     "tape": "^2.12.3",

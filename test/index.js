@@ -25,7 +25,8 @@ test("create entities", function (t) {
   t.ok(entities.put, "entities.put exists");
   t.ok(entities.del, "entities.del exists");
   t.ok(entities.methods, "entities.methods exists");
-  t.equal(entities.methods.length, 0, "entities.methods is empty");
+  t.equal(Object.keys(entities.methods).length, 3,
+    "entities.methods has length 3");
   t.end();
 });
 
@@ -36,10 +37,9 @@ test("extend Entity to Creature", function (t) {
       name: "string",
       life: "number",
     },
-    methods: [{
+    methods: {
       live: {
-        fn: function (options, callback) {
-          var id = options.id;
+        fn: function (id, callback) {
 
           this.get(id, function (err, creature) {
             if (err) { throw err; }
@@ -58,7 +58,7 @@ test("extend Entity to Creature", function (t) {
         },
         output: "Creature",
       },
-    }],
+    },
     config: {},
   });
   t.ok(Creature, "Creature exists");
@@ -66,15 +66,19 @@ test("extend Entity to Creature", function (t) {
 });
 
 test("create creatures", function (t) {
-  var creatures = new Entity(db)
+  var creatures = new Creature(db)
   t.ok(creatures, "creatures exists");
   t.ok(creatures.get, "creatures.get exists");
   t.ok(creatures.put, "creatures.put exists");
   t.ok(creatures.del, "creatures.del exists");
   t.ok(creatures.live, "creatures.live exists");
   t.ok(creatures.methods, "creatures.methods exists");
+  t.ok(creatures.methods.get, "creatures.methods.get exists");
+  t.ok(creatures.methods.put, "creatures.methods.put exists");
+  t.ok(creatures.methods.del, "creatures.methods.del exists");
   t.ok(creatures.methods.live, "creatures.methods.live exists");
-  t.equal(creatures.methods.length, 0, "creatures.methods is empty");
+  t.equal(Object.keys(creatures.methods).length, 4,
+    "creatures.methods has length 4");
   t.end();
 });
 
@@ -101,6 +105,7 @@ test("create unicorns", function (t) {
   t.ok(unicorns.live, "unicorns.live exists");
   t.ok(unicorns.methods, "unicorns.methods exists");
   t.ok(unicorns.methods.live, "unicorns.methods.live exists");
-  t.equal(unicorns.methods.length, 0, "unicorns.methods is empty");
+  t.equal(Object.keys(unicorns.methods).length, 4,
+    "unicorns.methods has length 4");
   t.end();
 });
