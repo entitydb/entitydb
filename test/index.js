@@ -1,111 +1,110 @@
-var test = require('tape');
+var expect = require('chai').expect;
 
 var level;
 var db;
 var Entity, Creature, Unicorn;
 
-test("load level db", function (t) {
-  level = require('level-test')();
-  t.ok(level, "level exists");
-  db = level('db');
-  t.ok(db, "db exists");
-  t.end();
-});
+describe("entity", function () {
 
-test("load Entity", function (t) {
-  Entity = require('../');
-  t.ok(Entity, "Entity exists");
-  t.end();
-});
+  before(function () {
+    level = require('level-test')();
+    db = level('db');
+  });
 
-test("create entities", function (t) {
-  var entities = new Entity(db)
-  t.ok(entities, "entities exists");
-  t.ok(entities.get, "entities.get exists");
-  t.ok(entities.put, "entities.put exists");
-  t.ok(entities.del, "entities.del exists");
-  t.ok(entities.methods, "entities.methods exists");
-  t.equal(Object.keys(entities.methods).length, 3,
-    "entities.methods has length 3");
-  t.end();
-});
+  describe("#Entity", function () {
+    
+    it("should load Entity", function () {
+      Entity = require('../');
+      expect(Entity).to.exist;
+    });
 
-test("extend Entity to Creature", function (t) {
-  Creature = Entity.extend({
-    type: "Creature",
-    properties: {
-      name: "string",
-      life: "number",
-    },
-    methods: {
-      live: {
-        fn: function (id, callback) {
+    it("should create entities", function () {
+      var entities = new Entity(db)
+      expect(entities).to.exist;
+      expect(entities.get).to.exist;
+      expect(entities.put).to.exist;
+      expect(entities.del).to.exist;
+      expect(entities.methods).to.exist;
+      expect(Object.keys(entities.methods).length).to.equal(3);
+    });
+  });
 
-          this.get(id, function (err, creature) {
-            if (err) { throw err; }
+  describe("#Creature", function () {
 
-            creature.life += 1;
-
-            this.put(id, creature, callback);
-
-          }.bind(this))
+    it("should extend Creature from Entity", function () {
+      Creature = Entity.extend({
+        type: "Creature",
+        properties: {
+          name: "string",
+          life: "number",
         },
-        input: {
-          id: {
-            type: "string",
-            required: true,
+        methods: {
+          live: {
+            fn: function (id, callback) {
+
+              this.get(id, function (err, creature) {
+                if (err) { throw err; }
+
+                creature.life += 1;
+
+                this.put(id, creature, callback);
+
+              }.bind(this))
+            },
+            input: {
+              id: {
+                type: "string",
+                required: true,
+              },
+            },
+            output: "Creature",
           },
         },
-        output: "Creature",
-      },
-    },
-    config: {},
+        config: {},
+      });
+      expect(Creature).to.exist;
+    });
+
+    it("should create creatures", function () {
+      var creatures = new Creature(db)
+      expect(creatures).to.exist;
+      expect(creatures.get).to.exist;
+      expect(creatures.put).to.exist;
+      expect(creatures.del).to.exist;
+      expect(creatures.live).to.exist;
+      expect(creatures.methods).to.exist;
+      expect(creatures.methods.get).to.exist;
+      expect(creatures.methods.put).to.exist;
+      expect(creatures.methods.del).to.exist;
+      expect(creatures.methods.live).to.exist;
+      expect(Object.keys(creatures.methods).length).to.equal(4);
+    });
   });
-  t.ok(Creature, "Creature exists");
-  t.end();
-});
 
-test("create creatures", function (t) {
-  var creatures = new Creature(db)
-  t.ok(creatures, "creatures exists");
-  t.ok(creatures.get, "creatures.get exists");
-  t.ok(creatures.put, "creatures.put exists");
-  t.ok(creatures.del, "creatures.del exists");
-  t.ok(creatures.live, "creatures.live exists");
-  t.ok(creatures.methods, "creatures.methods exists");
-  t.ok(creatures.methods.get, "creatures.methods.get exists");
-  t.ok(creatures.methods.put, "creatures.methods.put exists");
-  t.ok(creatures.methods.del, "creatures.methods.del exists");
-  t.ok(creatures.methods.live, "creatures.methods.live exists");
-  t.equal(Object.keys(creatures.methods).length, 4,
-    "creatures.methods has length 4");
-  t.end();
-});
+  describe("#Unicorn", function () {
 
-test("extend Creature to Unicorn", function (t) {
-  Unicorn = Creature.extend({
-    type: "Unicorn",
-    properties: {
-      name: "string",
-    },
-    methods: [],
-    config: {},
+    it("should extend Unicorn from Creature", function () {
+      Unicorn = Creature.extend({
+        type: "Unicorn",
+        properties: {
+          name: "string",
+        },
+        methods: [],
+        config: {},
+      });
+      expect(Unicorn).to.exist;
+    });
+
+    it("should create unicorns", function () {
+      var unicorns = new Unicorn(db)
+      expect(unicorns).to.exist;
+      expect(unicorns.get).to.exist;
+      expect(unicorns.put).to.exist;
+      expect(unicorns.del).to.exist;
+      expect(unicorns.live).to.exist;
+      expect(unicorns.methods).to.exist;
+      expect(unicorns.methods.live).to.exist;
+      expect(Object.keys(unicorns.methods).length).to.equal(4);
+    });
   });
-  t.ok(Unicorn, "Unicorn exists");
-  t.end();
-});
-
-
-test("create unicorns", function (t) {
-  var unicorns = new Unicorn(db)
-  t.ok(unicorns, "unicorns exists");
-  t.ok(unicorns.get, "unicorns.get exists");
-  t.ok(unicorns.put, "unicorns.put exists");
-  t.ok(unicorns.del, "unicorns.del exists");
-  t.ok(unicorns.live, "unicorns.live exists");
-  t.ok(unicorns.methods, "unicorns.methods exists");
-  t.ok(unicorns.methods.live, "unicorns.methods.live exists");
-  t.equal(Object.keys(unicorns.methods).length, 4,
-    "unicorns.methods has length 4");
-  t.end();
 });

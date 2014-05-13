@@ -4,7 +4,7 @@
   "description": "entity engine for javascript",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*"
+    "test": "mocha test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,29 @@
   "homepage": "https://github.com/entityjs/entity",
   "dependencies": {
     "mschema": "git://github.com/entityjs/mschema",
+    "mschema-rpc": "git://github.com/entityjs/mschema-rpc",
     "simple-extend": "^0.1.0",
     "lodash": "^2.4.1",
-    "mschema-rpc": "git://github.com/entityjs/mschema-rpc",
     "merge-defaults": "^0.1.0"
   },
   "devDependencies": {
-    "tape": "^2.12.3",
-    "level-test": "^1.6.2"
+    "level-test": "^1.6.2",
+    "testling": "^1.6.1",
+    "chai": "^1.9.1",
+    "mocha": "^1.18.2"
+  },
+  "testling": {
+    "harness": "mocha",
+    "files": "test/**/*.js",
+    "browsers": [
+      "ie/9..latest",
+      "chrome/25..latest",
+      "firefox/20.latest",
+      "opera/15..latest",
+      "safari/6..latest",
+      "iphone/6..latest",
+      "ipad/6..latest",
+      "android-browser/4.2..latest"
+    ]
   }
 }
