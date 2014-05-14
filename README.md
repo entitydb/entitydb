@@ -14,11 +14,11 @@ leveldb entity system
 ## projected features
 
 - [composed of modules](https://github.com/entitydb)
-- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate entity databases
+- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate and nest entity databases
 - uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to store entity relationships in a searchable graph
 - works on the server or in the browser, see [levelgraph-jsonld#3](http://github.com/mcollina/levelgraph-jsonld/issues/3)
-- able to reflect entities over various interfaces similar to [resources](https://github.com/bigcompany/resources)
-  - REST api with docs
+- able to reflect entities over various interfaces similar to [resources](https://github.com/ahdinosaur/resources)
+  - REST api with auto docs
   - [multilevel](https://github.com/juliangruber/multilevel)
   - IRC
   - README docs
