@@ -36,47 +36,61 @@ var level = require('level');
 var db = level('./db');
 var e = require('entitydb');
 
-var AgentDB = e.Graph.extend({
+var Account = e.Graph.extend({
+  name: "accounts",
+  schema: {
+    type: e.Types.String,
+    context: "foaf:accountName",
+  },
+});
+
+var Agent = e.Graph.extend({
   name: "agents",
-  schema: new e.Schema({
-    name: {
-      type: e.Types.String,
-      context: "foaf:name",
-      required: true,
+  schema: {
+    type: e.Types.Object,
+    properties: {
+      name: {
+        type: e.Types.String,
+        context: "foaf:name",
+        required: true,
+      },
     },
-  }),
+  },
   config: {
     base: "https://agents.open.app",
   }
 });
 
-var PersonDB = AgentDB.extend({
+var Person = AgentDB.extend({
   name: "persons",
-  schema: new e.Schema({
-    account: {
-      type: e.Types.String,
-      context: "foaf:accountName",
+  schema: {
+    properties: {
+      account: {
+        type: Account,
+      },
     },
-  }),
+  ),
   config: {
     base: "https://persons.open.app",
   },
 });
 
-var personDB = new PersonDB(db);
+var personDB = new Person(db);
 
 personDB.put({
   "name": "Mikey",
 }, function (err, me) {
 
-  me.put("account", [{
+  me.account = [{
     "@id": "loomio",
     "accountName": "ahdinosaur"
   }, {
     "@id": "cobudget",
     "accountName": "dinosaur"
-  }]);
-};
+  }]
+
+  personDB.put(me);
+});
 ```
 
 ## how to develop
