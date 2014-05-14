@@ -7,18 +7,15 @@
 
 [![browser tests](https://ci.testling.com/entitydb/entitydb.png)](https://ci.testling.com/entitydb/entitydb)
 
-entity engine for leveldb
+leveldb entity system
 
 #### work in progress
 
-## features
-
-- uses [mschema](https://github.com/entitydb/mschema) to schema entity objects and methods
-- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate entity databases
-- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to represent entity relationships in a searchable graph
-
 ## projected features
 
+- [composed of modules](https://github.com/entitydb)
+- uses [level-sublevel](https://github.com/dominictarr/level-sublevel) to separate entity databases
+- uses [levelgraph-jsonld](https://github.com/mcollina/levelgraph-jsonld) to store entity relationships in a searchable graph
 - works on the server or in the browser, see [levelgraph-jsonld#3](http://github.com/mcollina/levelgraph-jsonld/issues/3)
 - able to reflect entities over various interfaces similar to [resources](https://github.com/bigcompany/resources)
   - REST api with docs
@@ -28,44 +25,41 @@ entity engine for leveldb
 - all entity methods emit events
 - all entity methods have pre / post hooks
 
-## how to
+## how to use
 
-### install
-
-```
+```bash
 npm install --save entitydb
 ```
 
-### use
-
-```
+```javascript
 var level = require('level');
 var db = level('./db');
-var Entity = require('entitydb');
+var e = require('entitydb');
 
-var Creature = Entity.extend({
-  type: "Creature",
-  properties: {
+var CreatureDB = e.DB.extend({
+  name: "Creature",
+  schema: new e.Schema({
     name: {
-      type: "string",
+      type: e.Types.String,
       required: true,
     },
     karma: {
-      type: "number",
+      type: e.Types.Number,
       default: 0,
     },
-  },
+  }),
   methods: {
     live: {
-      input: {
-        id: "string",
-      },
-      output: "Creature",
+      input: new e.Schema({
+        id: e.Types.String,
+      }),
+      output: Creature,
       fn: function (id, callback) {
-        this.get(id, function (err, creature) {
+        var db = this;
+        db.get(id, function (err, creature) {
           creature.karma += 1;
-          this.put(id, creature, callback);
-        }.bind(this));
+          db.put(id, creature, callback);
+        });
       },
     },
   },
@@ -86,7 +80,7 @@ creatureDB.live(myId, function (err, creature) {
 });
 ```
 
-### develop
+## how to develop
 
 ```
 git clone https://github.com/entitydb/entitydb
@@ -94,8 +88,6 @@ npm install
 ```
 
 hack away!
-
-### test
 
 ```
 npm test

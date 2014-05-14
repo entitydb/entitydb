@@ -1,7 +1,7 @@
 {
   "name": "entitydb",
   "version": "0.0.0",
-  "description": "entity engine for leveldb",
+  "description": "leveldb entity system",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/**/*.js"
@@ -22,18 +22,7 @@
     "url": "https://github.com/entitydb/entitydb/issues"
   },
   "homepage": "https://github.com/entitydb/entitydb",
-  "dependencies": {
-    "mschema": "git://github.com/entitydb/mschema",
-    "mschema-rpc": "git://github.com/entitydb/mschema-rpc",
-    "simple-extend": "^0.1.0",
-    "lodash": "^2.4.1",
-    "merge-defaults": "^0.1.0",
-    "node-uuid": "^1.4.1",
-    "level-sublevel": "^5.2.0",
-    "level-writestream": "^0.1.1",
-    "levelgraph": "^0.8.2",
-    "levelgraph-jsonld": "git://github.com/mcollina/levelgraph-jsonld"
-  },
+  "dependencies": {},
   "devDependencies": {
     "level-test": "^1.6.2",
     "testling": "^1.6.1",
