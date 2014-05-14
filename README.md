@@ -36,48 +36,47 @@ var level = require('level');
 var db = level('./db');
 var e = require('entitydb');
 
-var CreatureDB = e.DB.extend({
-  name: "Creature",
+var AgentDB = e.Graph.extend({
+  name: "agents",
   schema: new e.Schema({
     name: {
       type: e.Types.String,
+      context: "foaf:name",
       required: true,
     },
-    karma: {
-      type: e.Types.Number,
-      default: 0,
+  }),
+  config: {
+    base: "https://agents.open.app",
+  }
+});
+
+var PersonDB = AgentDB.extend({
+  name: "persons",
+  schema: new e.Schema({
+    account: {
+      type: e.Types.String,
+      context: "foaf:accountName",
     },
   }),
-  methods: {
-    live: {
-      input: new e.Schema({
-        id: e.Types.String,
-      }),
-      output: Creature,
-      fn: function (id, callback) {
-        var db = this;
-        db.get(id, function (err, creature) {
-          creature.karma += 1;
-          db.put(id, creature, callback);
-        });
-      },
-    },
+  config: {
+    base: "https://persons.open.app",
   },
 });
 
-var creatureDb = new Creature(db);
+var personDB = new PersonDB(db);
 
-var myId;
-
-creatureDB.put({
+personDB.put({
   "name": "Mikey",
 }, function (err, me) {
-  myId = me["@id"];
-};
 
-creatureDB.live(myId, function (err, creature) {
-  console.log
-});
+  me.put("account", [{
+    "@id": "loomio",
+    "accountName": "ahdinosaur"
+  }, {
+    "@id": "cobudget",
+    "accountName": "dinosaur"
+  }]);
+};
 ```
 
 ## how to develop
